@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 interface Project {
@@ -6,6 +6,69 @@ interface Project {
   description: string;
   location: string;
 }
+
+const SkillCarousel: React.FC = () => {
+  const skills = [
+    { name: 'HTML', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
+    { name: 'CSS', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
+    { name: 'TypeScript', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg' },
+    { name: 'JavaScript', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+    { name: 'Vue', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg' },
+    { name: 'React', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+    { name: 'Docker', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
+    { name: 'Java', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
+    { name: 'Python', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+    { name: 'FastAPI', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg' },
+    { name: 'Spring', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg' },
+    { name: 'PostgreSQL', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg' },
+  ];
+
+  const [startIndex, setStartIndex] = useState(0);
+  const [visibleSkills, setVisibleSkills] = useState(1);
+
+  useEffect(() => {
+    const rotateSkills = () => {
+      setStartIndex((prevIndex) => (prevIndex + 1) % skills.length);
+    };
+
+    const timer = setInterval(rotateSkills, 3000); // Rotate every 3 seconds
+
+    return () => clearInterval(timer);
+  }, [skills.length]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setVisibleSkills(5);
+      } else if (window.innerWidth >= 768) {
+        setVisibleSkills(4);
+      } else {
+        setVisibleSkills(1);
+      }
+    };
+
+    handleResize(); // Set initial value
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return (
+    <div className="skill-carousel-container">
+      <div 
+        className="skill-carousel" 
+        style={{ transform: `translateX(-${100 / visibleSkills * startIndex}%)` }}
+      >
+        {skills.concat(skills.slice(0, visibleSkills - 1)).map((skill, index) => (
+          <div key={index} className="skill-item">
+            <img src={skill.image} alt={skill.name} />
+            <p>{skill.name}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const App: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -56,6 +119,8 @@ const App: React.FC = () => {
     </svg>
   );
 
+  
+
   return (
     <div className={`App ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
       <header className="header"> 
@@ -67,30 +132,21 @@ const App: React.FC = () => {
         <div className='introduction'>
           <h1>Hi! my name is Geremu and I'm a software engineer.</h1>
           <p>
-            <a href="https://www.linkedin.com/in/geremu-mckinney" target="_blank" rel="noopener noreferrer">LinkedIn</a> | 
-            <a href="https://github.com/REMUSWRLD" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/geremu-mckinney" target="_blank" rel="noopener noreferrer">LinkedIn</a> | <a href="https://github.com/REMUSWRLD" target="_blank" rel="noopener noreferrer">GitHub</a>
           </p>
         </div>
       </header>
 
       <main>
         <section id="summary">
-          <h2>Summary</h2>
           <p>Dedicated worker with a strong desire to transition into software engineering. Expertise in cross-functional collaboration and communication. Meticulous eye for detail and strong ability to meet the individual needs of customers/clients. Committed to continuous learning in a software engineering role. Enthusiastic about developing innovative solutions and contributing to impactful projects in tech.</p>
         </section>
 
-        <section id="skills">
-          <h2>Technical Skills</h2>
-          <ul>
-            <li><strong>Front end:</strong> HTML, CSS, TypeScript, JavaScript, Vue, React, Docker</li>
-            <li><strong>Back End:</strong> Java, Python, FastAPI, Spring boot, Docker</li>
-            <li><strong>Databases:</strong> SQL, PostgreSQL, JDBC, Table Design, E/R Diagrams</li>
-            <li><strong>Methodologies:</strong> Agile, OOP</li>
-            <li><strong>Testing:</strong> Unit Testing (JUnit), Integration Testing</li>
-          </ul>
-        </section>
+        <article id="skills">
+          <SkillCarousel />
+        </article>
 
-        <section id="projects">
+        <article id="projects">
           <h2>Technical Projects</h2>
           <div className="project-grid">
             {projects.map((project, index) => (
@@ -101,28 +157,7 @@ const App: React.FC = () => {
               </div>
             ))}
           </div>
-        </section>
-
-        {/* <section id="experience">
-          <h2>Professional Experience</h2>
-          {experiences.map((exp, index) => (
-            <div key={index} className="experience-item">
-              <h3>{exp.company} | {exp.position}</h3>
-              <p>{exp.location} | {exp.duration}</p>
-              <ul>
-                {exp.responsibilities.map((resp, i) => (
-                  <li key={i}>{resp}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </section> */}
-
-        <section id="education">
-          <h2>Education</h2>
-          <h3>Tech Elevator</h3>
-          <p>November 2023 - Augest 2024 | Full stack bootcamp designing software systems and solutions with 800+ hours of education and application.</p>
-        </section>
+        </article>
       </main>
 
       <footer>
