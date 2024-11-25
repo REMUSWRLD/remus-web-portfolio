@@ -58,17 +58,16 @@ const App: React.FC = () => {
 
   return (
     <div className={`App ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
-      <header className="header">
-        <div className="logo">
-          {/* need to figure out spacing */}
-        </div>
+      <header className="header"> 
+        <div className='buttons'>
+          <button onClick={toggleTheme} className="theme-toggle">
+            {isDarkMode ? <SunIcon /> : <MoonIcon />}
+          </button>
+        </div>        
         <div className='introduction'>
           <h1>Hi! my name is Geremu and I'm a software engineer.</h1>
           <p><a href="your-linkedin-url">LinkedIn</a> | <a href="your-github-url">GitHub</a></p>
         </div>
-        <button onClick={toggleTheme} className="theme-toggle">
-            {isDarkMode ? <SunIcon /> : <MoonIcon />}
-        </button>
       </header>
 
       <main>
