@@ -66,7 +66,10 @@ const App: React.FC = () => {
         </div>        
         <div className='introduction'>
           <h1>Hi! my name is Geremu and I'm a software engineer.</h1>
-          <p><a href="your-linkedin-url">LinkedIn</a> | <a href="your-github-url">GitHub</a></p>
+          <p>
+            <a href="https://www.linkedin.com/in/geremu-mckinney" target="_blank" rel="noopener noreferrer">LinkedIn</a> | 
+            <a href="https://github.com/REMUSWRLD" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </p>
         </div>
       </header>
 
