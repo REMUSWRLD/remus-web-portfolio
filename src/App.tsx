@@ -7,7 +7,7 @@ interface Project {
   location: string;
 }
 
-const SkillCarousel: React.FC = () => {
+const SkillGrid: React.FC = () => {
   const skills = [
     { name: 'HTML', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
     { name: 'CSS', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
@@ -23,49 +23,14 @@ const SkillCarousel: React.FC = () => {
     { name: 'PostgreSQL', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg' },
   ];
 
-  const [startIndex, setStartIndex] = useState(0);
-  const [visibleSkills, setVisibleSkills] = useState(1);
-
-  useEffect(() => {
-    const rotateSkills = () => {
-      setStartIndex((prevIndex) => (prevIndex + 1) % skills.length);
-    };
-
-    const timer = setInterval(rotateSkills, 3000); // Rotate every 3 seconds
-
-    return () => clearInterval(timer);
-  }, [skills.length]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        setVisibleSkills(5);
-      } else if (window.innerWidth >= 768) {
-        setVisibleSkills(4);
-      } else {
-        setVisibleSkills(1);
-      }
-    };
-
-    handleResize(); // Set initial value
-    window.addEventListener('resize', handleResize);
-
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   return (
-    <div className="skill-carousel-container">
-      <div 
-        className="skill-carousel" 
-        style={{ transform: `translateX(-${100 / visibleSkills * startIndex}%)` }}
-      >
-        {skills.concat(skills.slice(0, visibleSkills - 1)).map((skill, index) => (
-          <div key={index} className="skill-item">
-            <img src={skill.image} alt={skill.name} />
-            <p>{skill.name}</p>
-          </div>
-        ))}
-      </div>
+    <div className="skill-grid">
+      {skills.map((skill, index) => (
+        <div key={index} className="skill-item">
+          <img src={skill.image} alt={skill.name} />
+          <p>{skill.name}</p>
+        </div>
+      ))}
     </div>
   );
 };
@@ -143,11 +108,16 @@ const App: React.FC = () => {
         </section>
 
         <article id="skills">
-          <SkillCarousel />
+          <div className='skill-detail'>
+            <h1>Tools and Languages I work with!</h1>          
+          </div>
+          <SkillGrid />
         </article>
 
         <article id="projects">
-          <h2>Technical Projects</h2>
+          <div className='project-detail'>
+            <h1>Recent Projects!</h1>          
+          </div>
           <div className="project-grid">
             {projects.map((project, index) => (
               <div key={index} className="project-card">
