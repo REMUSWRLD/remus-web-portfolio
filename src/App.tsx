@@ -88,28 +88,42 @@ const App: React.FC = () => {
 
   return (
     <div className={`App ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
-      <header className="header"> 
-        <div className='buttons'>
-          <button onClick={toggleTheme} className="theme-toggle">
-            {isDarkMode ? <SunIcon /> : <MoonIcon />}
-          </button>
-        </div>        
-        <div className='introduction'>
-          <h1>Hi! my name is Geremu and I'm a software engineer.</h1>
-          <p>
-            <a href="https://www.linkedin.com/in/geremu-mckinney" target="_blank" rel="noopener noreferrer">LinkedIn</a> | <a href="https://github.com/REMUSWRLD" target="_blank" rel="noopener noreferrer">GitHub</a>
-          </p>
-        </div>
+      
+      <header>
+                  
+          <div className='backdrop'>
+            <div className='introduction'>
+              <h1>Hi! my name is Geremu and I'm a software engineer.</h1>
+              <div className='buttons'>
+                <p><a href="https://www.linkedin.com/in/geremu-mckinney" target="_blank" rel="noopener noreferrer">LinkedIn</a> | <a href="https://github.com/REMUSWRLD" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+                <button onClick={toggleTheme} className="theme-toggle">
+                  {isDarkMode ? <SunIcon /> : <MoonIcon />}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className='backdrop-edge'></div>
+    
       </header>
 
       <main>
+        
         <section id="summary">
-          <p>Dedicated worker with a strong desire to transition into software engineering. Expertise in cross-functional collaboration and communication. Meticulous eye for detail and strong ability to meet the individual needs of customers/clients. Committed to continuous learning in a software engineering role. Enthusiastic about developing innovative solutions and contributing to impactful projects in tech.</p>
+           <h2>Welcome to my own little world!</h2>
+             <p> I am very excited to have this site up and running,
+              I currently work in Healthcare administration but this nerd stuff... its my passion!
+              I'm always looking for opportunities to learn new things and this portfolio is currently my greatest achievement.
+              Hopefully this site will help me showcase my skills and share my experiences with any wonderers,
+              leaving a trail to look back on.
+          
+          
+          </p>
         </section>
 
         <article id="skills">
           <div className='skill-detail'>
-            <h1>Tools and Languages I work with!</h1>          
+            <h1>Some of the tools and Languages I work with!</h1>          
           </div>
           <SkillGrid />
         </article>
