@@ -1,0 +1,45 @@
+.project-detail-container {
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  header h1 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+  }
+  
+  .project-demo, .project-tools {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: var(--card-bg-color);
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .project-demo h2, .project-tools h2 {
+    color: var(--primary-color);
+  }
+  
+  .demo-frame {
+    width: 100%;
+    height: 400px;
+    border: none;
+    margin-top: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .project-tools ul {
+    list-style-type: disc;
+    padding-left: 2rem;
+  }
+  
+  .project-tools li {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    color: var(--text-color);
+  }
+  

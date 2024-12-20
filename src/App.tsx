@@ -8,7 +8,7 @@ const ProjectList: React.FC<{ onCardClick: (title: string) => void }> = ({ onCar
     { title: "CAMDN | HACC2024 Community App to Meet Digital Navigators", isHidden: false },
     { title: "Trophy Room | A social media platform where people can share Achievements", isHidden: true },
     { title: "HealthBase | A healthcare system application", isHidden: false },
-    { title: "Task Manager Web Service", isHidden: false },
+    { title: "Task Manager | A Web Service for managing tasks", isHidden: false },
   ];
 
   return (
@@ -65,7 +65,7 @@ const App: React.FC = () => {
     <div className="App">
       <Routes>
         <Route
-          path="/"
+          path="/web-portfolio"
           element={
             <>
               <header>
