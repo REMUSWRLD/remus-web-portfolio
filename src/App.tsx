@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 interface Project {
   title: string;
   description: string;
   location: string;
+  isHidden: boolean;
 }
 
 const SkillGrid: React.FC = () => {
@@ -41,22 +42,26 @@ const App: React.FC = () => {
     { 
       title: "CAMDN | HACC2024 Community App to Meet Digital Navigators", 
       description: "CAMDN is a service with our state library system to teach people how to use technology by connecting them to community digital navigators.",
-      location: "Honolulu, HI"
+      location: "Honolulu, HI",
+      isHidden: false
     },
     { 
       title: "Trophy Room | A social media platform where people can share Achievements", 
-      description: "Trophy Room is an app designed to celebrate accomplishments and share future goals with a like-minded community. This app gives a platform to showcase your achievements, to connect with others, and to allow for mutual support and encouragement to check off the next adventure on your bucket list!",
-      location: "Honolulu, HI"
+      description: "This app creates a platform to showcase your achievements and connect with others. It provides a space for mutual support and enocuragment as you check off the next dadventure on your bucket list!",
+      location: "Honolulu, HI",
+      isHidden: true
     },
     { 
-      title: "Health Base | Health-Base is a healthcare system application", 
-      description: "Health Base is designed to revolutionize eMRS. Its key objective is to centralize patient data, eliminating the need for extensive inter-service communication. By integrating critical functions such as billing and patient-provider communication, Health Base significantly improves operational efficiency, helping healthcare providers reduce time spent on administrative tasks and enhance patient care.",
-      location: "Honolulu, HI"
+      title: "HealthBase | A healthcare system application", 
+      description: "HealthBase is designed to revolutionize EMRS. Its key objective is to centralize patient data, eliminating the need for extensive inter-service communication. By integrating critical functions such as billing and patient-provider communication, Health Base significantly improves operational efficiency, helping healthcare providers reduce time spent on administrative tasks and enhance patient care.",
+      location: "Honolulu, HI",
+      isHidden: false
     },
     { 
       title: "Task Manager Web Service", 
       description: "This task manager application is a Spring Boot application designed to manage tasks and users. It provides a RESTful API for creating, reading, updating, and deleting tasks, as well as managing user authentication and authorization.",
-      location: "Honolulu, HI"
+      location: "Honolulu, HI",
+      isHidden: false
     },
   ];
 
@@ -93,7 +98,7 @@ const App: React.FC = () => {
                   
           <div className='backdrop'>
             <div className='introduction'>
-              <h1>Hi! my name is Geremu and I'm a software engineer.</h1>
+              <h1>Hi! My name is Geremu and I'm a software engineer.</h1>
               <div className='buttons'>
                 <p><a href="https://www.linkedin.com/in/geremu-mckinney" target="_blank" rel="noopener noreferrer">LinkedIn</a> | <a href="https://github.com/REMUSWRLD" target="_blank" rel="noopener noreferrer">GitHub</a></p>
                 <button onClick={toggleTheme} className="theme-toggle">
@@ -111,13 +116,9 @@ const App: React.FC = () => {
         
         <section id="summary">
            <h2>Welcome to my own little world!</h2>
-             <p> I am very excited to have this site up and running,
-              I currently work in Healthcare administration but this nerd stuff... its my passion!
-              I'm always looking for opportunities to learn new things and this portfolio is currently my greatest achievement.
-              Hopefully this site will help me showcase my skills and share my experiences with any wonderers,
-              leaving a trail to look back on.
-          
-          
+             <p> I am very excited to have this site up and running.
+              I currently work in Healthcare Administration but this nerd stuff... it's my passion!
+              I'm always looking for opportunities to learn and I am proud to showcase my achievements on my site!
           </p>
         </section>
 
@@ -134,7 +135,7 @@ const App: React.FC = () => {
           </div>
           <div className="project-grid">
             {projects.map((project, index) => (
-              <div key={index} className="project-card">
+              <div key={index} className={`project-card ${project.isHidden ? "blur" : ""}`}>
                 <h3>{project.title}</h3>
                 <p>{project.description}</p>
                 <p>{project.location}</p>

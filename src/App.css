@@ -21,6 +21,11 @@
   --shadow-hover-color: #f4ba78;
 }
 
+.blur {
+  filter: blur(5px);
+  pointer-events: none;
+}
+
 body {
   height: 100%;
   margin: 0;
